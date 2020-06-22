@@ -1,0 +1,2 @@
+# demo
+my go demo
