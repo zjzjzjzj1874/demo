@@ -1,3 +1,5 @@
+// This package is aim to show how to use channel;
+// to achieve producer and consumer.
 package main
 
 import (
