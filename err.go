@@ -10,6 +10,7 @@ var (
 	Err2 = errors.New("err2")
 )
 
+// how err working
 func MyTestErr() {
 	//e1 := errors.New("err1")
 	e1 := Err1
