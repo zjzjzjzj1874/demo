@@ -20,6 +20,6 @@ func flagUse() {
 		fmt.Println("v1.0.0")
 	}
 	if *d {
-		fmt.Println(*d)
+		fmt.Println("-debug = ", *d)
 	}
 }
