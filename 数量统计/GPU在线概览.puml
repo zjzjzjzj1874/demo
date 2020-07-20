@@ -1,10 +1,14 @@
 @startuml
 autonumber
-== 设备在线概览(包括哪些?从哪里获取) ==
+== GPU在线概览 ==
 actor User as user
-participant "ai-center" as center
+participant "网关" as center
+participant "ai-center" as bus
 
-user -> center : 设备在线概览
-center --> user : (行车记录仪,火成,摄像头)数量及总数
+user -> center : GPU在线概览
+bus <- center : 获取缓存中GPU数量及有效心跳数量
+bus --> center : GPU信息
+center --> center : GPU状态及有效性验证
+center --> user : GPU在线数量及总数
 
 @enduml

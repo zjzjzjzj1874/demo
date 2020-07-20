@@ -1,33 +1,18 @@
 @startuml
 autonumber
-== 设备/摄像头/资源报警 ==
-actor User as user
-participant "ai-bus" as ai
-participant "IOT" as iot
-participant "设备(火成)" as dev
+== 心跳上报及接收 ==
+'actor User as user
+participant "redis" as redis
+participant "ai-bus" as bus
+participant "ai-agent" as agent
+participant "K8S集群" as k8s
 
-alt
-    iot <- dev : 上报资源信息及版本\n (向IOT注册预警接口)
+loop 60s心跳
+    agent -> k8s : 向K8S请求GPU信息
+    agent <-- k8s : 返回GPU信息
+    agent -> bus : 将GPU信息同步至bus
+    bus --> redis : GPU服务器信息入库(统计资源消耗使用)\n 所有GPU服务器只需要保证有一份数据即可
 end
 
-====
-ai <- iot : 通知云平台报警设备
-ai --> ai : 报警设备入库
-====
-
-user -> ai : 查询实时报警列表(getRealtimeAlarm)\n (预警类型,设备ID,设备名称)
-user <-- ai : 响应结果集
-====
-user -> ai : 获取报警详情(getAlarmDetail)
-user <-- ai : 返回响应并修改报警状态为已读
-
-'== 预警中心 ==
-'autonumber
-'actor User as user
-'participant "Ai云平台" as ai
-'participant "IOT" as iot
-'
-'user -> ai : 查询报警列表(getAlarmLists)
-'user <-- ai : 响应结果集(预警类型,次数)
 
 @enduml

@@ -40,15 +40,18 @@ package "监控预警次数统计实体"{
     }
 }
 
-package "Ai场景事件排行统计实体"{
+package "Ai场景事件排行统计实体\n 在事件推送成功后++"{
     class AiSenseRanking {
       - 数据id bigint(19)
       + 创建时间 timestamp
       + 删除时间 timestamp
       + 更新时间 timestamp
       + 推送成功次数 int(11)
-      + 场景ID bigint(19) /'这个具体用什么区分'/
+      + 项目ID bigint(19)
+      + 订阅者ID bigint(19)
+      + 场景Key tinyint(3)
       + 场景 varchar(10)
+      + 统计日期 timestamp
     }
 }
 
@@ -59,6 +62,7 @@ package "GPU信息实体"{
       - UpgradeRecord varchar(50) -- 升级记录
       - Location varchar(255) -- 地理位置
       - RegisterTime varchar(255) -- 注册时间
+      - Os varchar(50) -- 操作系统
       - []GPUInfo -- GPU列表信息
     }
 

@@ -1,13 +1,14 @@
 @startuml
 autonumber
-== GPU消耗统计 ==
+== 边缘节点消耗统计 ==
 actor User as user
-participant "ai-center" as center
-participant "redis" as redis
+participant "云平台网关" as fire
+participant "IOT平台" as iot
 
-user -> center : GPU资源使用率
-center -> redis : 获取GPU信息数据并排序
-center <-- redis : 返回排序结果集
-center --> user : 返回GPU信息
+user -> fire : 边缘节点资源使用率
+fire -> iot : 获取边缘节点数据
+fire <-- iot : 返回结果集
+fire --> fire : 排序处理
+fire --> user : 返回边缘设备消耗信息
 
 @enduml

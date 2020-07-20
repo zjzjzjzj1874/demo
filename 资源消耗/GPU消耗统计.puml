@@ -1,17 +1,14 @@
 @startuml
 autonumber
-== 取流预警 ==
+== GPU消耗统计 ==
 actor User as user
-participant "ai-bus" as bus
-participant "ai-agent" as agent
-participant "ai模型分析" as ai
-participant "ai-task" as task
+participant "配置中心" as center
+participant "redis" as redis
 
-task -> ai : 调用Ai分析模型
-agent <- ai : Ai模型分析失败(取流预警)
-
-== 取流预警入库 ==
-agent -> bus : 通知ai-bus取流预警
-bus --> bus : 取流报警入库(统计资源消耗使用)\n 所有GPU服务器只需要保证有一份数据即可
+user -> center : GPU资源使用率
+center -> redis : 获取GPU信息数据并排序
+center <-- redis : 返回最新结果
+center <-- center : 排序
+center --> user : 返回GPU信息
 
 @enduml

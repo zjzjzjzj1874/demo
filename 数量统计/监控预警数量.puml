@@ -1,10 +1,13 @@
 @startuml
 autonumber
-== GPU及边缘设备数量(包括哪些?从哪里获取) ==
 actor User as user
-participant "ai-center" as center
+participant "云平台(网关)" as gw
+participant "云平台(统计服)" as st
 
-user -> center : 设备在线概览
-center --> user : (行车记录仪,火成,摄像头)数量及总数
+== 监控预警查询 ==
+user -> gw : 监控预警次数
+st <- gw : 监控预警次数
+st --> gw : 返回次数
+gw --> user : (数据库=>五类预警)日/月数量
 
 @enduml
