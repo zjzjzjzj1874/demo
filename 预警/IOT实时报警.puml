@@ -1,0 +1,32 @@
+@startuml
+autonumber
+== 设备/摄像头/资源报警 ==
+actor User as user
+participant "Ai云平台" as ai
+participant "IOT" as iot
+participant "设备(火成)" as dev
+
+loop
+    iot <- dev : 上报资源信息及版本\n (向IOT注册预警接口)
+end
+
+====
+ai <- iot : 通知云平台报警设备
+ai -> ai : 报警设备入库
+====
+
+user -> ai : 查询实时报警列表(getRealtimeAlarm)\n (预警类型,设备ID,设备名称)
+user <-- ai : 响应结果集
+user -> ai : 获取报警详情(getAlarmDetail)
+user <-- ai : 返回响应并修改报警状态为已读
+
+'== 预警中心 ==
+'autonumber
+'actor User as user
+'participant "Ai云平台" as ai
+'participant "IOT" as iot
+'
+'user -> ai : 查询报警列表(getAlarmLists)
+'user <-- ai : 响应结果集(预警类型,次数)
+
+@enduml

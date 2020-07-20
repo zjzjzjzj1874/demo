@@ -1,0 +1,17 @@
+@startuml
+autonumber
+== 取流预警 ==
+actor User as user
+participant "agent-bus" as bus
+participant "agent-agent" as agent
+participant "ai模型分析" as ai
+participant "ai-task" as task
+
+task -> ai : 调用Ai分析模型
+agent <- ai : Ai模型分析失败(取流预警)
+
+== 取流预警入库 ==
+agent -> bus : 通知ai-bus取流预警
+bus --> bus : 取流报警入库
+
+@enduml

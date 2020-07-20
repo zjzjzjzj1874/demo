@@ -1,0 +1,100 @@
+@startuml
+package "报警信息实体"{
+    class AlarmInfo {
+      - 数据id bigint(19)
+      + 报警id bigint(19)
+      + 设备id bigint(19)
+      + 设备坐标 blob
+      + 报警类型 tinyint(3)
+      + 设备名称 varchar(255)
+      + 设备地址 varchar(255)
+      + 报警详情 varchar(255)
+      + 是否已读 bool
+      + 报警时间 timestamp
+      + 创建时间 timestamp
+      + 删除时间 timestamp
+      + 更新时间 timestamp
+    }
+    class "alarmType" {
+      + 取流预警 tinyint(1)
+      + 边缘设备掉线 tinyint(1)
+      + 摄像头掉线 tinyint(1)
+      + 资源预警 tinyint(1)
+      + 画质异常报警 tinyint(1)
+    }
+}
+
+package "监控预警次数统计实体"{
+    class AlarmStatistics {
+      - 数据id bigint(19)
+      + 创建时间 timestamp
+      + 删除时间 timestamp
+      + 更新时间 timestamp
+      + 边缘设备掉线 int(11)
+      + 摄像头掉线 int(11)
+      + 资源预警 int(11)
+      + 取流预警 int(11)
+      + 画质预警 int(11)
+      + 年月 varchar(10)
+      + 日 varchar(5)
+    }
+}
+
+package "Ai场景事件排行统计实体"{
+    class AiSenseRanking {
+      - 数据id bigint(19)
+      + 创建时间 timestamp
+      + 删除时间 timestamp
+      + 更新时间 timestamp
+      + 推送成功次数 int(11)
+      + 场景ID bigint(19) /'这个具体用什么区分'/
+      + 场景 varchar(10)
+    }
+}
+
+package "GPU信息实体"{
+    class GPUServerInfo {
+      - NodeID bigint(19) -- 节点ID
+      - NodeType tinyint(3) -- 节点类型
+      - UpgradeRecord varchar(50) -- 升级记录
+      - Location varchar(255) -- 地理位置
+      - RegisterTime varchar(255) -- 注册时间
+      - []GPUInfo -- GPU列表信息
+    }
+
+    class GPUInfo {
+      + CPUInfo  -- cpu信息
+      + MemInfo  -- 内存信息
+      + DiskInfo  -- 磁盘信息
+      - LoadInfo int(11) -- 负载情况
+      - ModelInfo varchar(255) -- 模型
+      - IP varchar(255) -- IP地址
+    }
+
+    class DiskInfo {
+      + UsedPercent int(11) -- 利用率
+      + TotalMem int(11) -- 总内存(GB)
+      + UsedMem int(11) -- 已使用(GB)
+    }
+
+    class MemInfo {
+      + UsedPercent int(11) -- 利用率
+      + TotalMem int(11) -- 总内存(TB)
+      + UsedMem int(11) -- 已使用(TB)
+    }
+
+    class CPUInfo {
+      + UsedPercent int(11) -- 利用率
+      + Producer varchar(255) -- 厂家
+      + Model varchar(255) -- 型号
+    }
+
+}
+
+AlarmInfo <|-right- alarmType
+GPUInfo <|-left- CPUInfo
+GPUInfo <|-right- DiskInfo
+GPUInfo <|-up- MemInfo
+GPUServerInfo <|-up- GPUInfo
+
+@enduml

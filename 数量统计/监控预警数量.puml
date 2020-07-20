@@ -1,0 +1,10 @@
+@startuml
+autonumber
+== GPU及边缘设备数量(包括哪些?从哪里获取) ==
+actor User as user
+participant "ai-center" as center
+
+user -> center : 设备在线概览
+center --> user : (行车记录仪,火成,摄像头)数量及总数
+
+@enduml
