@@ -1,10 +1,8 @@
 package main
 
 import (
-	"crypto/md5"
 	"demo/task"
 	"fmt"
-	"strconv"
 	"time"
 )
 
@@ -12,10 +10,6 @@ func main() {
 	// todo  开启协程:用waitGroup的来控制多个时间 ==> ai-agent中请求机器的方法拆分开来 避免超时
 
 
-	// function: 生成IOT gateway需要的鉴权token
-	timestamp := strconv.FormatInt(time.Now().Unix(), 10)
-	authBytes := md5.Sum([]byte("HXBYcA32PgQhiHAsQB" + timestamp))
-	fmt.Println(fmt.Sprintf("%s;%x;%s", "rockontrol", authBytes, timestamp))
 
 	//tagVal, err := strconv.ParseUint("9765439183791093097", 10, 64)
 	//fmt.Println(tagVal, err)
