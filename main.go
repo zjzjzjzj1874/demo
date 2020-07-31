@@ -36,24 +36,6 @@ func main() {
 	//go task()
 	//time.Sleep(time.Hour)
 
-	//m := make(map[string]CPUInfo)
-	//m["1"] = CPUInfo{
-	//	UsedPercent: 50,
-	//	Framework:   "arm",
-	//	Model:       "i7",
-	//}
-	//m["2"] = CPUInfo{
-	//	UsedPercent: 60,
-	//	Framework:   "arm",
-	//	Model:       "i5",
-	//}
-	//
-	//for k, v := range m {
-	//	v.UsedPercent += 10
-	//	m[k] = v
-	//}
-	//time.Sleep(time.Second)
-	//fmt.Println(m)
 }
 
 func taskTimer() {
