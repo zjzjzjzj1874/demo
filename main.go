@@ -1,12 +1,24 @@
 package main
 
 import (
+	"crypto/md5"
 	"demo/task"
 	"fmt"
+	"strconv"
 	"time"
 )
 
 func main() {
+	// todo  开启协程:用waitGroup的来控制多个时间 ==> ai-agent中请求机器的方法拆分开来 避免超时
+
+
+	// function: 生成IOT gateway需要的鉴权token
+	timestamp := strconv.FormatInt(time.Now().Unix(), 10)
+	authBytes := md5.Sum([]byte("HXBYcA32PgQhiHAsQB" + timestamp))
+	fmt.Println(fmt.Sprintf("%s;%x;%s", "rockontrol", authBytes, timestamp))
+
+	//tagVal, err := strconv.ParseUint("9765439183791093097", 10, 64)
+	//fmt.Println(tagVal, err)
 
 	//flagUse()
 
@@ -33,24 +45,24 @@ func main() {
 	//go task()
 	//time.Sleep(time.Hour)
 
-	m := make(map[string]CPUInfo)
-	m["1"] = CPUInfo{
-		UsedPercent: 50,
-		Framework:   "arm",
-		Model:       "i7",
-	}
-	m["2"] = CPUInfo{
-		UsedPercent: 60,
-		Framework:   "arm",
-		Model:       "i5",
-	}
-
-	for k, v := range m {
-		v.UsedPercent += 10
-		m[k] = v
-	}
-	time.Sleep(time.Second)
-	fmt.Println(m)
+	//m := make(map[string]CPUInfo)
+	//m["1"] = CPUInfo{
+	//	UsedPercent: 50,
+	//	Framework:   "arm",
+	//	Model:       "i7",
+	//}
+	//m["2"] = CPUInfo{
+	//	UsedPercent: 60,
+	//	Framework:   "arm",
+	//	Model:       "i5",
+	//}
+	//
+	//for k, v := range m {
+	//	v.UsedPercent += 10
+	//	m[k] = v
+	//}
+	//time.Sleep(time.Second)
+	//fmt.Println(m)
 }
 
 func taskTimer() {
