@@ -11,9 +11,6 @@ func main() {
 
 
 
-	//tagVal, err := strconv.ParseUint("9765439183791093097", 10, 64)
-	//fmt.Println(tagVal, err)
-
 	//flagUse()
 
 	//go func() {

@@ -30,5 +30,10 @@ func TestIotGateway(t *testing.T) {
 	timestamp := strconv.FormatInt(time.Now().Unix(), 10)
 	authBytes := md5.Sum([]byte("HXBYcA32PgQhiHAsQB" + timestamp))
 	fmt.Println(fmt.Sprintf("%s;%x;%s", "rockontrol", authBytes, timestamp))
+}
 
+// 浮点数与字符串转化
+func TestStringParseToFloat64(t *testing.T) {
+	tagVal, err := strconv.ParseUint("9765439183791093097", 10, 64)
+	fmt.Println(tagVal, err)
 }
