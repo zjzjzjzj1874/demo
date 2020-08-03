@@ -12,7 +12,11 @@ import (
 	"time"
 )
 
-// 随机生成0-1的小数
+func init() {
+	rand.Seed(time.Now().Unix())
+}
+
+// 随机生成0-1的小数(如果没有上面的init方法,就是伪随机) ==> golang伪随机和真随机的区别
 func TestMyTestRand01(t *testing.T) {
 	for i := 0; i < 10; i++ {
 		fmt.Println(float64(rand.Intn(100)) / 100)
@@ -126,7 +130,7 @@ func postHttp(param string) {
 
 // endregion waitGroup测试性能
 
-// 函数耗时测试
+// region 函数耗时测试
 func TestTimeUsedCount(t *testing.T) {
 	begin := time.Now()
 	for i := 0; i < 10; i++ {
@@ -153,3 +157,5 @@ func timeCost() func() {
 		fmt.Printf("time cost = %v\n", tc)
 	}
 }
+
+// endregion 函数耗时测试
