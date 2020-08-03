@@ -41,6 +41,7 @@ func TestStringParseToFloat64(t *testing.T) {
 	fmt.Println(tagVal, err)
 }
 
+// region waitGroup测试性能
 // 不用waitGroup测试
 func TestWithoutWaitGroup(t *testing.T) {
 	intArr := make([]int, 20)
@@ -121,4 +122,34 @@ func postHttp(param string) {
 		return
 	}
 	fmt.Println("postHttp : ", string(content))
+}
+
+// endregion waitGroup测试性能
+
+// 函数耗时测试
+func TestTimeUsedCount(t *testing.T) {
+	begin := time.Now()
+	for i := 0; i < 10; i++ {
+		time.Sleep(time.Millisecond * time.Duration(rand.Intn(100)))
+	}
+	used := time.Since(begin)
+	now := time.Now()
+	sub := now.Sub(begin)
+	fmt.Println("use time ==> ", used, " ; sub time ==> ", sub)
+
+	// 优雅的写法
+	defer timeCost()() //注意，是对 timeCost()返回的函数进行调用，因此需要加两对小括号
+	total := 0
+	for i := 1; i <= 100; i++ {
+		total += i
+	}
+}
+
+//@brief：耗时统计函数
+func timeCost() func() {
+	start := time.Now()
+	return func() {
+		tc := time.Since(start)
+		fmt.Printf("time cost = %v\n", tc)
+	}
 }
