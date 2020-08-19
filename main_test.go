@@ -16,14 +16,14 @@ func init() {
 	rand.Seed(time.Now().Unix())
 }
 
-// 随机生成0-1的小数(如果没有上面的init方法,就是伪随机) ==> golang伪随机和真随机的区别
+// 随机生成0-1的小数(如果没有上面的init方法,就是伪随机) ==> golang伪随机和真随机的区别(即种子数的区别)
 func TestMyTestRand01(t *testing.T) {
 	for i := 0; i < 10; i++ {
 		fmt.Println(float64(rand.Intn(100)) / 100)
 	}
 }
 
-// 切片测试
+// 切片测试(开闭区间测试)
 func TestMyTestSlice(t *testing.T) {
 	arr := make([]int, 10)
 
@@ -37,12 +37,6 @@ func TestIotGateway(t *testing.T) {
 	timestamp := strconv.FormatInt(time.Now().Unix(), 10)
 	authBytes := md5.Sum([]byte("HXBYcA32PgQhiHAsQB" + timestamp))
 	fmt.Println(fmt.Sprintf("%s;%x;%s", "rockontrol", authBytes, timestamp))
-}
-
-// 浮点数与字符串转化
-func TestStringParseToFloat64(t *testing.T) {
-	tagVal, err := strconv.ParseUint("9765439183791093097", 10, 64)
-	fmt.Println(tagVal, err)
 }
 
 // region waitGroup测试性能
@@ -159,3 +153,26 @@ func timeCost() func() {
 }
 
 // endregion 函数耗时测试
+
+// 浮点数与字符串转化
+func TestStringParseToFloat64(t *testing.T) {
+	tagVal, err := strconv.ParseUint("9765439183791093097", 10, 64)
+	fmt.Println(tagVal, err)
+}
+
+// 是否是2的幂
+func TestPowerOfTwo(t *testing.T) {
+	var x uintptr
+	x = 2
+	fmt.Println(x&(x-1) == 0)
+	x = 4
+	fmt.Println(x&(x-1) == 0)
+	x = 6
+	fmt.Println(x&(x-1) == 0)
+	x = 8
+	fmt.Println(x&(x-1) == 0)
+}
+
+func TestMyTestErr2(t *testing.T) {
+	
+}
