@@ -174,5 +174,5 @@ func TestPowerOfTwo(t *testing.T) {
 }
 
 func TestMyTestErr2(t *testing.T) {
-	
+	// my test err
 }
