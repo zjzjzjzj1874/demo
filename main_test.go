@@ -180,3 +180,7 @@ func TestMyTestErr2(t *testing.T) {
 func TestMyTestErr3(t *testing.T) {
 	// my test1 err
 }
+
+func TestMyTestErr4(t *testing.T) {
+	// my test4 err
+}
