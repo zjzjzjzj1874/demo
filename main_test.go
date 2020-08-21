@@ -172,19 +172,3 @@ func TestPowerOfTwo(t *testing.T) {
 	x = 8
 	fmt.Println(x&(x-1) == 0)
 }
-
-func TestMyTestErr2(t *testing.T) {
-	// my test err
-}
-
-func TestMyTestErr3(t *testing.T) {
-	// my test1 err
-}
-
-func TestMyTestErr4(t *testing.T) {
-	// my test4 err
-}
-
-func TestMyTestErr5(t *testing.T) {
-	// my test5 err
-}
