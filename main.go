@@ -7,9 +7,8 @@ import (
 )
 
 func main() {
+
 	// todo  开启协程:用waitGroup的来控制多个时间 ==> ai-agent中请求机器的方法拆分开来 避免超时
-
-
 
 	//flagUse()
 
