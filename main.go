@@ -7,16 +7,13 @@ import (
 )
 
 func main() {
-
 	// todo  开启协程:用w    aitGroup的来控制多个时间 ==> ai-agent中请求机器的方法拆分开来 避免超时
 
 	//flagUse()
-
 	//go func() {
 	//	for i := 0; i < 10; i {
 	//		fmt.Println(i)
 	//	}
-
 	//}()
 
 	//select {} // select阻塞,可以确保go协成执行完毕 ==> 但是前面的执行完之后,就会进入死锁阶段.
