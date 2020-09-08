@@ -103,6 +103,7 @@ func TestPush3(t *testing.T) {
 			select {
 			case q <- i:
 				fmt.Println("insert into channel: ", i)
+				// 没有default分支,则该channel产生会阻塞
 			}
 			time.Sleep(time.Second)
 		}
