@@ -26,6 +26,7 @@ func TestPush1(t *testing.T) {
 	q := make(chan int, 5)
 	x := 100
 
+	// 一个消费者在不间断产生数据 ==> 超出队列的长度,自己消费最先进入的一个,然后把本次产生的加入channel队列中
 	go func() {
 		for i := 1; i < x; i++ {
 			select {
@@ -41,7 +42,7 @@ func TestPush1(t *testing.T) {
 		}
 	}()
 
-	// 消费者
+	// 配置了channel容量个消费者 ==> 5个
 	for i := 0; i < cap(q); i++ {
 		go func() {
 			for {
@@ -71,6 +72,37 @@ func TestPush2(t *testing.T) {
 				fmt.Println("insert into channel: ", i)
 			default:
 				fmt.Println("channel is full,this value will be discard", i)
+			}
+			time.Sleep(time.Second)
+		}
+	}()
+
+	// 消费者
+	go func() {
+		for {
+			select {
+			case item := <-q:
+				fmt.Println("item :", item)
+			default:
+				fmt.Println("queue empty")
+			}
+			time.Sleep(2 * time.Second)
+		}
+
+	}()
+
+	time.Sleep(time.Hour)
+}
+
+// 阻塞式的channel队列 ==> 超出channel队列的长度后,将阻塞等待消费结束
+func TestPush3(t *testing.T) {
+	q := make(chan int, 5)
+	x := 100
+	go func() {
+		for i := 1; i < x; i++ {
+			select {
+			case q <- i:
+				fmt.Println("insert into channel: ", i)
 			}
 			time.Sleep(time.Second)
 		}
