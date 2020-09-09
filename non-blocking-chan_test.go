@@ -6,21 +6,6 @@ import (
 	"time"
 )
 
-func TestPush(t *testing.T) {
-	q := make(chan int, 5)
-	x := []int{1, 2, 3, 4, 5, 6}
-	for _, value := range x {
-		err := Push(q, value)
-		fmt.Printf("error:%v\n", err)
-	}
-
-	for _, value := range x {
-		fmt.Println(value)
-		v, err := Get(q)
-		fmt.Printf("v:%v, error:%v\n", v, err)
-	}
-}
-
 // 非阻塞式的channel队列 ==> 傻瓜式地实现了先进后出队列
 func TestPush1(t *testing.T) {
 	q := make(chan int, 5)
@@ -41,6 +26,48 @@ func TestPush1(t *testing.T) {
 			time.Sleep(time.Millisecond * 150)
 		}
 	}()
+
+	// 配置了channel容量个消费者 ==> 5个
+	for i := 0; i < cap(q); i++ {
+		go func() {
+			for {
+				select {
+				case item := <-q:
+					fmt.Println("CONSUMER:item :", item)
+				default:
+					fmt.Println("CONSUMER:queue empty")
+				}
+				time.Sleep(time.Second)
+			}
+
+		}()
+	}
+
+	time.Sleep(time.Hour)
+}
+
+// 非阻塞式的channel队列 ==> 傻瓜式地实现了先进后出队列
+func TestPush(t *testing.T) {
+	q := make(chan int, 5)
+	x := 100
+
+	// 2个消费者在不间断产生数据 ==> 超出队列的长度,自己消费最先进入的一个,然后把本次产生的加入channel队列中
+	for i := 0; i < 2; i++ {
+		go func() {
+			for i := 1; i < x; i++ {
+				select {
+				case q <- i:
+					fmt.Println("PRODUCER:insert into channel: ", i)
+				default:
+					item := <-q
+					fmt.Println("PRODUCER:channel is full,this value will be discard", item)
+					q <- i
+					fmt.Println("PRODUCER:insert into channel: ", i)
+				}
+				time.Sleep(time.Millisecond * 150)
+			}
+		}()
+	}
 
 	// 配置了channel容量个消费者 ==> 5个
 	for i := 0; i < cap(q); i++ {
