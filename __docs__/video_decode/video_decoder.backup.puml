@@ -1,0 +1,79 @@
+'甘特图    https://plantuml.com/zh/gantt-diagram
+'用例图    https://plantuml.com/zh/use-case-diagram
+'组件图    https://plantuml.com/zh/component-diagram
+
+
+@startuml
+skinparam defaultFontName Courier
+skinparam shadowing false
+skinparam noteBackgroundColor #eee
+skinparam noteBorderColor transparent
+skinparam sequenceGroupBorderColor #ccc
+skinparam sequenceReferenceBorderColor #ccc
+
+title Video-decoder 服务端的时序图
+
+actor       "gw-model"              as GM
+participant "video-decoder"         as VD
+participant "redis"                 as RD
+participant "model-dispatch"        as MD
+
+==Video-Decoder模块服务初始化==
+VD -> RD: 获取摄像头所分析的模型列表
+
+return Camera => []AnalyzeOption:写入内存
+|||
+VD -> VD: 摄像头对应场景写入内存
+
+|||
+
+==请求 开始分析 API==
+
+GM -> VD: CreateLiveAnalyze
+
+ref over VD
+POST https://${video-decoder_host}/live
+
+Body decoder.CreateTaskParam
+end ref
+
+activate VD
+
+
+
+
+group 摄像头分析 校验
+    VD -> VD: 分析任务入库
+
+else 摄像头已开启分析
+
+    GM o<-- VD: 200
+
+else 摄像头未开启分析
+
+    VD -> RD: 将摄像头和分析场景写入redis(Key:Camera => Set)
+
+    |||
+    GM o<-- VD: 返回:成功开启分析
+
+    group 开启协程 直播流抽帧(Min场景帧率)
+
+    |||
+
+    VD -> MD: 前置模块:分析图片画质(可不关注画质,附上画质返回)
+
+    VD -> MD: 分析模块:分析满足帧率的场景
+
+    VD -> MD: 后置模块:某些场景需要去重(model-dispatch)
+    |||
+    VD <- MD: 分析结果
+    VD <- VD: 通过回调:通知分析结果(Callback URL)
+
+    end
+
+end
+
+
+deactivate VD
+
+@enduml

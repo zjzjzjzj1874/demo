@@ -82,9 +82,9 @@ func chiHanBao(ctx context.Context) {
 // 在ctx中携带对应的值,传递下去
 func ContextWithValue() {
 	ctx1 := context.WithValue(context.Background(), "greet", "hello world")
-	ctx2 := context.WithValue(ctx1, "session", 123456)
-	ctx3 := context.WithValue(ctx2, "session", 123)
-	fmt.Println(ctx3.Value("session")) // ctx.value在设计初就是不可变模式=>即设定完毕之后,ctx的所有信息都不可变了.
+	//ctx2 := context.WithValue(ctx1, "session", 123456)
+	//ctx3 := context.WithValue(ctx2, "session", 123)
+	//fmt.Println(ctx3.Value("session")) // ctx.value在设计初就是不可变模式=>即设定完毕之后,ctx的所有信息都不可变了.
 
 	//process(ctx)
 	//
@@ -96,7 +96,7 @@ func ContextWithValue() {
 	//fmt.Println(reflect.TypeOf(ses))
 
 	// context配合select做超时处理  ==> 最常用于RPC超时调用
-	ctx4, cancel := context.WithTimeout(ctx3, 1*time.Second)
+	ctx4, cancel := context.WithTimeout(ctx1, 1*time.Second)
 	defer cancel()
 	select {
 	case <-time.After(time.Second * 2):

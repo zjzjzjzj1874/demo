@@ -7,7 +7,22 @@ import (
 )
 
 func main() {
-	// todo  开启协程:用waitGroup的来控制多个时间 ==> ai-agent中请求机器的方法拆分开来 避免超时
+	// 位运算解决签到方案(每个月最多31天,in32就够用了,然后签到一天,将当天的位设置为1即可)
+	const (
+		a = 1 << iota // 1 << 0
+		b             // 1 << 1
+		c             // 1 << 2
+		d             // 1 << 3
+		e             // 1 << 4
+		f             // 1 << 5
+	)
+
+	signIn := 0
+	signIn |= a
+	signIn |= d
+	//fmt.Println(a, d, b, c, d, e, f, 1<<1, 3<<2)
+	fmt.Println(" sign in:", signIn, signIn&a == 0, signIn&b == 0, signIn&c == 0, signIn&d == 0, signIn&e == 0, signIn&f == 0)
+
 	//flagUse()
 	//go func() {
 	//	for i := 0; i < 10; i {

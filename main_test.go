@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strconv"
 	"sync"
+	"syscall"
 	"testing"
 	"time"
 )
@@ -171,4 +172,29 @@ func TestPowerOfTwo(t *testing.T) {
 	fmt.Println(x&(x-1) == 0)
 	x = 8
 	fmt.Println(x&(x-1) == 0)
+}
+
+// os包中的pid和getPid
+func TestPidInOs(t *testing.T) {
+	fmt.Println("gid : ", syscall.Getegid())
+	fmt.Println("uid : ", syscall.Geteuid())
+	fmt.Println("uid : ", syscall.Getgid())
+	fmt.Println("ppid : ", syscall.Getppid())
+	fmt.Println("pid : ", syscall.Getpid())
+
+	pgid, err := syscall.Getpgid(syscall.Getpid())
+	fmt.Println("pgid : ", pgid, err)
+	go func() {
+		fmt.Println("go1 gid : ", syscall.Getegid())
+		fmt.Println("go1 uid : ", syscall.Geteuid())
+		fmt.Println("go1 uid : ", syscall.Getgid())
+		fmt.Println("go1 ppid : ", syscall.Getppid())
+		fmt.Println("go1 pid : ", syscall.Getpid())
+
+		pgid, err := syscall.Getpgid(syscall.Getpid())
+		fmt.Println("go1 pgid : ", pgid, err)
+		time.Sleep(time.Hour)
+	}()
+	time.Sleep(time.Hour)
+	// todo  开启协程:用waitGroup的来控制多个时间 ==> ai-agent中请求机器的方法拆分开来 避免超时
 }
