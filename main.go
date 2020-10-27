@@ -1,27 +1,115 @@
 package main
 
 import (
+	"bytes"
 	"demo/task"
 	"fmt"
+	"io"
+	"io/ioutil"
+	"net/http"
+	"os"
+	"strconv"
 	"time"
 )
 
 func main() {
-	// 位运算解决签到方案(每个月最多31天,in32就够用了,然后签到一天,将当天的位设置为1即可)
-	const (
-		a = 1 << iota // 1 << 0
-		b             // 1 << 1
-		c             // 1 << 2
-		d             // 1 << 3
-		e             // 1 << 4
-		f             // 1 << 5
-	)
 
-	signIn := 0
-	signIn |= a
-	signIn |= d
+	num, err := strconv.ParseInt("", 10, 64)
+	if err != nil {
+		fmt.Printf("err:%v \n", err)
+	}
+	fmt.Printf("num:%d \n", num)
+
+	imagPath := "http://img2.bdstatic.com/img/image/166314e251f95cad1c8f496ad547d3e6709c93d5197.jpg"
+	////图片正则
+	//reg, _ := regexp.Compile(`(\w|\d|_)*.jpg`)
+	//name := reg.FindStringSubmatch(imagPath)[0]
+	//fmt.Print(name)
+	//通过http请求获取图片的流文件
+	resp, _ := http.Get(imagPath)
+	body, _ := ioutil.ReadAll(resp.Body)
+	out, _ := os.Create("/Users/jiahua-zhoujian/Tools/test/pic/test.jpeg")
+	io.Copy(out, bytes.NewReader(body))
+
+	// region context
+	// https://www.infoq.cn/article/fIBEaRLQstWIEkd94BCR
+	// Create an HTTP server that listens on port 8000
+	_ = http.ListenAndServe(":8000", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		ctx := r.Context()
+		// This prints to STDOUT to show that processing has started
+		_, _ = fmt.Fprint(os.Stdout, "processing request\n")
+		// We use `select` to execute a peice of code depending on which
+		// channel receives a message first
+		select {
+		case <-time.After(2 * time.Second):
+			// If we receive a message after 2 seconds
+			// that means the request has been processed
+			// We then write this as the response
+			_, _ = w.Write([]byte("request processed"))
+		case <-ctx.Done():
+			// If the request gets cancelled, log it
+			// to Stdout
+			_, _ = fmt.Fprint(os.Stdout, "request cancelled\n")
+		}
+	}))
+	// endregion context
+
+	// region 协程中,变量的微小变化
+	//i := 0
+	//for {
+	//	if i%2 != 0 {
+	//		i++
+	//		continue
+	//	}
+	//	//c := i
+	//	go func() {
+	//		fmt.Println("int2 === ", i)
+	//	}()
+	//	i++
+	//
+	//	time.Sleep(time.Second)
+	//}
+	// endregion 协程中,变量的微小变化
+
+	//time.Sleep(time.Hour)
+
+	//params := "/lb-ai/v1/rt-analyze/uniform-exclusive"
+	//secret := "f4dce4ad3b13eb26f6f3ceb29e5629a5fcf24221a28c640ba2a53605fc328357"
+	//timeStamp := 1601350600
+	//newString := params + secret + fmt.Sprintf("%d", timeStamp)
+	//strByte := []byte(newString)
+	//
+	//// 方法1
+	//hash := sha256.New()
+	//_, _ = hash.Write(strByte)
+	//sign := hex.EncodeToString(hash.Sum(nil))
+	//fmt.Println(sign)
+	//
+	//// 方法2
+	//h := sha256.New()
+	//h.Write([]byte(newString))
+	//sec := h.Sum(nil)
+	//fmt.Printf("%x\n", sec)
+	//
+	//// 方法3
+	//sum := sha256.Sum256([]byte(newString))
+	//fmt.Printf("%x", sum)
+
+	// 位运算解决签到方案(每个月最多31天,in32就够用了,然后签到一天,将当天的位设置为1即可)
+	//const (
+	//	a = 1 << iota // 1 << 0
+	//	b             // 1 << 1
+	//	c             // 1 << 2
+	//	d             // 1 << 3
+	//	e             // 1 << 4
+	//	f             // 1 << 5
+	//)
+	//
+	//signIn := 0
+	//signIn |= a
+	//signIn |= d
 	//fmt.Println(a, d, b, c, d, e, f, 1<<1, 3<<2)
-	fmt.Println(" sign in:", signIn, signIn&a == 0, signIn&b == 0, signIn&c == 0, signIn&d == 0, signIn&e == 0, signIn&f == 0)
+	//fmt.Println(" sign in:", signIn, signIn&a == 0, signIn&b == 0, signIn&c == 0, signIn&d == 0, signIn&e == 0, signIn&f == 0)
 
 	//flagUse()
 	//go func() {

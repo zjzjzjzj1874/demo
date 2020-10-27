@@ -6,14 +6,14 @@ skinparam noteBorderColor transparent
 skinparam sequenceGroupBorderColor #ccc
 skinparam sequenceReferenceBorderColor #ccc
 
-title video-decoder 解码任务的时序图
+title decoder 解码任务的时序图
 
 actor       "bff-gw-model"        as GM
-participant "video-decoder"       as VD
+participant "decoder"       as VD
 participant "decoder-task"        as DT
 participant "model-task"          as MT
 
-==Video-Decoder模块服务初始化==
+==Decoder模块服务初始化==
 
 loop 心跳上报(5s)
  VD -> DT:服务中正在运行的解码任务
@@ -27,7 +27,7 @@ end loop
 GM -> VD: CreateLiveAnalyze
 
 ref over VD
-POST https://${video-decoder_host}/live
+POST https://${decoder_host}/live
 
 入参:Min(抽帧频率),场景,分析时间...
 end ref
@@ -59,7 +59,7 @@ deactivate DT
 GM -> VD: CreateVideoAnalyze
 
 ref over VD
-POST https://${video-decoder_host}/video
+POST https://${decoder_host}/video
 
 入参:抽帧频率,场景,分析时间...
 end ref
@@ -86,7 +86,7 @@ deactivate DT
 GM -> VD: CreatePictureAnalyze
 
 ref over VD
-POST https://${video-decoder_host}/picture
+POST https://${decoder_host}/picture
 
 入参:...
 end ref

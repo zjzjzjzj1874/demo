@@ -10,7 +10,7 @@ import (
 func TestDifferenceMap(t *testing.T) {
 	var (
 		totalMap sync.Map
-		subMap   sync.Map
+		//subMap   sync.Map
 		notExist []interface{}
 	)
 	totalMap.Store("key1", "key1")
@@ -18,8 +18,13 @@ func TestDifferenceMap(t *testing.T) {
 	totalMap.Store("key3", "key3")
 	//subMap.Store("key3", "key3")
 
-	notExist = DifferenceMap(&totalMap, &subMap)
+	totalMap.Range(func(key, value interface{}) bool {
+		totalMap.Delete(key)
+		return true
+	})
+	//notExist = DifferenceMap(&totalMap, &subMap)
 
+	fmt.Println(totalMap.Load("key1"))
 	fmt.Println("not exist :", notExist)
 
 }

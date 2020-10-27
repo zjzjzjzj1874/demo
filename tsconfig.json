@@ -1,0 +1,54 @@
+{
+  "message":"执行前向成功",
+  "code":0,
+  "entityList":[
+    {
+      "class":1,
+      "label": [
+        {
+          "label_key": "BeverageBottle",
+          "label_value": "True"
+        },
+        {
+          "label_key": "CallPhone",
+          "label_value": "False"
+        },
+        {
+          "label_key": "Smoke",
+          "label_value": "Unknown"
+        },
+        {
+          "label_key": "ClothingColor",
+          "label_value": "Red"
+        }
+      ],
+      "bndbox":[
+        [1,1],
+        [2,2],
+        [3,3]
+      ],
+      "confidence":0.99,
+      "desc":" ",
+      "extral":"{}"
+    },
+    {
+      "class":1,
+      "label":"安全帽",
+      "bndbox":[
+        [1,1],
+        [2,2],
+        [3,3]
+      ],
+      "confidence":0.99,
+      "desc":"检测",
+      "extral":"{}"
+    }
+  ],
+  "start_time":"2020-08-25 15:57:54 345",
+  "end_time":"2020-08-25 15:57:55 345",
+  "inference_time":0.15,
+  "extral":{
+    "Hardsample":"True",
+    "UnnormalImage":"True"
+  }
+}

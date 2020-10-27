@@ -25,7 +25,13 @@ POST https://${model-task_host}/notify
 end ref
 
 |||
-MT -> AM: 以工作流调用对应的场景分析服务
+MT -> AM: (1).调用实体分析模型
+return
+|||
+MT --> AM: (2).调用属性分析模型
+return
+|||
+MT --> AM: (3).(根据工作流判断是否结束分析...)
 
 
 
