@@ -2,56 +2,105 @@ package main
 
 import (
 	"bytes"
+	"container/list"
 	"demo/task"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
-	"strconv"
+	"sync"
 	"time"
 )
 
 func main() {
+	// 用这个来控制
+	m := sync.Map{}
+	queue := list.New()
+	m.Store(1, queue)
 
-	num, err := strconv.ParseInt("", 10, 64)
-	if err != nil {
-		fmt.Printf("err:%v \n", err)
-	}
-	fmt.Printf("num:%d \n", num)
+	for i := 0; i < 20; i++ {
+		val, ok := m.Load(1)
+		if ok {
+			q := val.(*list.List)
+			if q.Len() > 10 {
+				ele := q.Back()
+				if ele != nil {
+					q.Remove(ele)
+					q.PushFront(i)
+				}
+			} else {
+				q.PushFront(i)
+			}
+			m.Store(1, q)
 
-	imagPath := "http://img2.bdstatic.com/img/image/166314e251f95cad1c8f496ad547d3e6709c93d5197.jpg"
-	////图片正则
-	//reg, _ := regexp.Compile(`(\w|\d|_)*.jpg`)
-	//name := reg.FindStringSubmatch(imagPath)[0]
-	//fmt.Print(name)
-	//通过http请求获取图片的流文件
-	resp, _ := http.Get(imagPath)
-	body, _ := ioutil.ReadAll(resp.Body)
-	out, _ := os.Create("/Users/jiahua-zhoujian/Tools/test/pic/test.jpeg")
-	io.Copy(out, bytes.NewReader(body))
-
-	// region context
-	// https://www.infoq.cn/article/fIBEaRLQstWIEkd94BCR
-	// Create an HTTP server that listens on port 8000
-	_ = http.ListenAndServe(":8000", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		ctx := r.Context()
-		// This prints to STDOUT to show that processing has started
-		_, _ = fmt.Fprint(os.Stdout, "processing request\n")
-		// We use `select` to execute a peice of code depending on which
-		// channel receives a message first
-		select {
-		case <-time.After(2 * time.Second):
-			// If we receive a message after 2 seconds
-			// that means the request has been processed
-			// We then write this as the response
-			_, _ = w.Write([]byte("request processed"))
-		case <-ctx.Done():
-			// If the request gets cancelled, log it
-			// to Stdout
-			_, _ = fmt.Fprint(os.Stdout, "request cancelled\n")
+			for iter := q.Back(); iter != nil; iter = iter.Prev() {
+				fmt.Println("item:", iter.Value)
+			}
 		}
-	}))
+	}
+
+	// region 测试图片
+	resp, err := http.Get("https://static001.infoq.cn/resource/image/07/95/070aeb1b3ab22eaf69d5f59dfa622495.png")
+	if err != nil {
+		fmt.Println("get picture err:", err)
+		return
+	}
+	fileData, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("read picture err:", err)
+		return
+	}
+
+	// 存图片
+	out, _ := os.Create("/Users/jiahua-zhoujian/Tools/test/pic/test.jpeg")
+	_, _ = io.Copy(out, bytes.NewReader(fileData))
+	// endregion 测试图片
+
+	//m1 := new(map[string]int)
+	//(*m1)["hello"] = 2
+	//m1 := make(map[string]int)
+	//m1["hello"] = 2
+	//fmt.Println(m1)
+
+	//num, err := strconv.ParseInt("", 10, 64)
+	//if err != nil {
+	//	fmt.Printf("err:%v \n", err)
+	//}
+	//fmt.Printf("num:%d \n", num)
+	//
+	//imagPath := "http://img2.bdstatic.com/img/image/166314e251f95cad1c8f496ad547d3e6709c93d5197.jpg"
+	//////图片正则
+	////reg, _ := regexp.Compile(`(\w|\d|_)*.jpg`)
+	////name := reg.FindStringSubmatch(imagPath)[0]
+	////fmt.Print(name)
+	////通过http请求获取图片的流文件
+	//resp, _ := http.Get(imagPath)
+	//body, _ := ioutil.ReadAll(resp.Body)
+	//out, _ := os.Create("/Users/jiahua-zhoujian/Tools/test/pic/test.jpeg")
+	//io.Copy(out, bytes.NewReader(body))
+	//
+	//// region context
+	//// https://www.infoq.cn/article/fIBEaRLQstWIEkd94BCR
+	//// Create an HTTP server that listens on port 8000
+	//_ = http.ListenAndServe(":8000", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	//	ctx := r.Context()
+	//	// This prints to STDOUT to show that processing has started
+	//	_, _ = fmt.Fprint(os.Stdout, "processing request\n")
+	//	// We use `select` to execute a peice of code depending on which
+	//	// channel receives a message first
+	//	select {
+	//	case <-time.After(2 * time.Second):
+	//		// If we receive a message after 2 seconds
+	//		// that means the request has been processed
+	//		// We then write this as the response
+	//		_, _ = w.Write([]byte("request processed"))
+	//	case <-ctx.Done():
+	//		// If the request gets cancelled, log it
+	//		// to Stdout
+	//		_, _ = fmt.Fprint(os.Stdout, "request cancelled\n")
+	//	}
+	//}))
 	// endregion context
 
 	// region 协程中,变量的微小变化

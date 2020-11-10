@@ -8,7 +8,7 @@ import (
 
 // 非阻塞式的channel队列 ==> 傻瓜式地实现了先进后出队列
 func TestPush1(t *testing.T) {
-	q := make(chan int, 5)
+	q := make(chan int, 1)
 	x := 100
 
 	// 一个消费者在不间断产生数据 ==> 超出队列的长度,自己消费最先进入的一个,然后把本次产生的加入channel队列中
