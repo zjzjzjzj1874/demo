@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"container/list"
-	"demo/task"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -11,6 +10,7 @@ import (
 	"os"
 	"sync"
 	"time"
+	"zj.com/demo/task"
 )
 
 func main() {

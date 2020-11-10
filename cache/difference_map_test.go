@@ -1,5 +1,5 @@
 // 求两个sync.map的差集
-package main
+package cache
 
 import (
 	"fmt"
