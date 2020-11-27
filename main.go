@@ -1,60 +1,66 @@
 package main
 
 import (
-	"bytes"
-	"container/list"
+	"demo/task"
 	"fmt"
-	"io"
-	"io/ioutil"
-	"net/http"
-	"os"
-	"sync"
 	"time"
-	"zj.com/demo/task"
 )
 
+var a bool = true
+
 func main() {
+	defer func() {
+		fmt.Println("err1:")
+	}()
+	if a == true {
+		fmt.Println("is true")
+		return
+	}
+	defer func() {
+		fmt.Println("err2:")
+	}()
+
 	// 用这个来控制
-	m := sync.Map{}
-	queue := list.New()
-	m.Store(1, queue)
-
-	for i := 0; i < 20; i++ {
-		val, ok := m.Load(1)
-		if ok {
-			q := val.(*list.List)
-			if q.Len() > 10 {
-				ele := q.Back()
-				if ele != nil {
-					q.Remove(ele)
-					q.PushFront(i)
-				}
-			} else {
-				q.PushFront(i)
-			}
-			m.Store(1, q)
-
-			for iter := q.Back(); iter != nil; iter = iter.Prev() {
-				fmt.Println("item:", iter.Value)
-			}
-		}
-	}
-
-	// region 测试图片
-	resp, err := http.Get("https://static001.infoq.cn/resource/image/07/95/070aeb1b3ab22eaf69d5f59dfa622495.png")
-	if err != nil {
-		fmt.Println("get picture err:", err)
-		return
-	}
-	fileData, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Println("read picture err:", err)
-		return
-	}
-
-	// 存图片
-	out, _ := os.Create("/Users/jiahua-zhoujian/Tools/test/pic/test.jpeg")
-	_, _ = io.Copy(out, bytes.NewReader(fileData))
+	//m := sync.Map{}
+	//queue := list.New()
+	//m.Store(1, queue)
+	//
+	//for i := 0; i < 20; i++ {
+	//	val, ok := m.Load(1)
+	//	if ok {
+	//		q := val.(*list.List)
+	//		if q.Len() > 10 {
+	//			ele := q.Back()
+	//			if ele != nil {
+	//				q.Remove(ele)
+	//				q.PushFront(i)
+	//			}
+	//		} else {
+	//			q.PushFront(i)
+	//		}
+	//		m.Store(1, q)
+	//
+	//		for iter := q.Back(); iter != nil; iter = iter.Prev() {
+	//			fmt.Println("item:", iter.Value)
+	//		}
+	//	}
+	//}
+	//
+	//// region 测试图片
+	//resp, err := http.Get("https://static001.infoq.cn/resource/image/07/95/070aeb1b3ab22eaf69d5f59dfa622495.png")
+	//if err != nil {
+	//	fmt.Println("get picture err:", err)
+	//	return
+	//}
+	//fileData, err := ioutil.ReadAll(resp.Body)
+	//if err != nil {
+	//	fmt.Println("read picture err:", err)
+	//	return
+	//}
+	//
+	//// 存图片
+	//out, _ := os.Create("/Users/jiahua-zhoujian/Tools/test/pic/test.jpeg")
+	//_, _ = io.Copy(out, bytes.NewReader(fileData))
 	// endregion 测试图片
 
 	//m1 := new(map[string]int)
