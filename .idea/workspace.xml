@@ -31,26 +31,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9aee3f7-446d-42a1-af06-cca2750a5a13" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-png/分析失败日志表.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-png/直播流任务管理表.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-png/设备场景关系表.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-uml/ai-agent.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-uml/decoder-center.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-uml/decoder-task.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-uml/decoder.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-uml/model-schedule.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-uml/分析统计实体.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-uml/失败日志实体.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-uml/直播流任务管理实体.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-uml/解码服务数据流向.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-uml/解码统计实体.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-uml/设备场景关系实体.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务统计/decoder-center.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务统计/decoder-task.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务统计/decoder.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务统计/model-schedule.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务统计/统计分析实体.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务统计/统计解码实体.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__test__/concurrent.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__test__/concurrent_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" path="/usr/local/go" />
   <component name="Git.Settings">
@@ -65,23 +67,35 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-uml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/__docs__/video_decode/解码任务统计" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/__docs__/video_decode/解码任务统计" />
       <recent name="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-uml" />
       <recent name="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-png" />
       <recent name="$PROJECT_DIR$/__docs__/video_decode" />
       <recent name="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Build.go build demo">
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="demo" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/" />
+      <package value="zj.com/demo" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build demo" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <working_directory value="$PROJECT_DIR$" />
@@ -91,9 +105,32 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
+    <configuration name="TestGetTaskMap in demo/__test__" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <working_directory value="$PROJECT_DIR$/__test__" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="demo/__test__" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestGetTaskMap$" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="demo" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="DIRECTORY" />
+      <package value="zj.com/demo" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build demo" />
+        <item itemvalue="Go Test.TestGetTaskMap in demo/__test__" />
       </list>
     </recent_temporary>
   </component>
@@ -116,21 +153,114 @@
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="330" key="GridCell.Tab.0.bottom" timestamp="1605246489243">
+    <state width="1398" height="264" key="GridCell.Tab.0.bottom" timestamp="1610517216916">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="330" key="GridCell.Tab.0.bottom/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1605246489243" />
-    <state width="1398" height="330" key="GridCell.Tab.0.center" timestamp="1605246489235">
+    <state width="1878" height="257" key="GridCell.Tab.0.bottom/0.0.1440.900/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1608716865345" />
+    <state width="1398" height="264" key="GridCell.Tab.0.bottom/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610517216916" />
+    <state width="1398" height="192" key="GridCell.Tab.0.bottom/0.23.1440.877/-315.-1057.1920.1057@0.23.1440.877" timestamp="1609148594730" />
+    <state width="1878" height="257" key="GridCell.Tab.0.bottom/0.23.1440.877/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1607920287796" />
+    <state width="1398" height="192" key="GridCell.Tab.0.bottom/0.23.1440.877/-315.-1080.1920.1080@0.23.1440.877" timestamp="1609152166468" />
+    <state width="1398" height="264" key="GridCell.Tab.0.center" timestamp="1610517216911">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="330" key="GridCell.Tab.0.center/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1605246489235" />
-    <state width="1398" height="330" key="GridCell.Tab.0.left" timestamp="1605246489234">
+    <state width="1878" height="257" key="GridCell.Tab.0.center/0.0.1440.900/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1608716865343" />
+    <state width="1398" height="264" key="GridCell.Tab.0.center/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610517216911" />
+    <state width="1398" height="192" key="GridCell.Tab.0.center/0.23.1440.877/-315.-1057.1920.1057@0.23.1440.877" timestamp="1609148594729" />
+    <state width="1878" height="257" key="GridCell.Tab.0.center/0.23.1440.877/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1607920287794" />
+    <state width="1398" height="192" key="GridCell.Tab.0.center/0.23.1440.877/-315.-1080.1920.1080@0.23.1440.877" timestamp="1609152166466" />
+    <state width="1398" height="264" key="GridCell.Tab.0.left" timestamp="1610517216909">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="330" key="GridCell.Tab.0.left/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1605246489234" />
-    <state width="1398" height="330" key="GridCell.Tab.0.right" timestamp="1605246489242">
+    <state width="1878" height="257" key="GridCell.Tab.0.left/0.0.1440.900/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1608716865342" />
+    <state width="1398" height="264" key="GridCell.Tab.0.left/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610517216909" />
+    <state width="1398" height="192" key="GridCell.Tab.0.left/0.23.1440.877/-315.-1057.1920.1057@0.23.1440.877" timestamp="1609148594728" />
+    <state width="1878" height="257" key="GridCell.Tab.0.left/0.23.1440.877/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1607920287793" />
+    <state width="1398" height="192" key="GridCell.Tab.0.left/0.23.1440.877/-315.-1080.1920.1080@0.23.1440.877" timestamp="1609152166465" />
+    <state width="1398" height="264" key="GridCell.Tab.0.right" timestamp="1610517216912">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="330" key="GridCell.Tab.0.right/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1605246489242" />
+    <state width="1878" height="257" key="GridCell.Tab.0.right/0.0.1440.900/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1608716865344" />
+    <state width="1398" height="264" key="GridCell.Tab.0.right/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610517216912" />
+    <state width="1398" height="192" key="GridCell.Tab.0.right/0.23.1440.877/-315.-1057.1920.1057@0.23.1440.877" timestamp="1609148594729" />
+    <state width="1878" height="257" key="GridCell.Tab.0.right/0.23.1440.877/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1607920287795" />
+    <state width="1398" height="192" key="GridCell.Tab.0.right/0.23.1440.877/-315.-1080.1920.1080@0.23.1440.877" timestamp="1609152166467" />
+    <state width="1398" height="250" key="GridCell.Tab.1.bottom" timestamp="1610352843421">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="250" key="GridCell.Tab.1.bottom/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843421" />
+    <state width="1398" height="250" key="GridCell.Tab.1.center" timestamp="1610352843419">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="250" key="GridCell.Tab.1.center/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843419" />
+    <state width="1398" height="250" key="GridCell.Tab.1.left" timestamp="1610352843418">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="250" key="GridCell.Tab.1.left/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843418" />
+    <state width="1398" height="250" key="GridCell.Tab.1.right" timestamp="1610352843420">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="250" key="GridCell.Tab.1.right/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843420" />
+    <state width="1398" height="250" key="GridCell.Tab.2.bottom" timestamp="1610352843425">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="250" key="GridCell.Tab.2.bottom/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843425" />
+    <state width="1398" height="250" key="GridCell.Tab.2.center" timestamp="1610352843423">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="250" key="GridCell.Tab.2.center/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843423" />
+    <state width="1398" height="250" key="GridCell.Tab.2.left" timestamp="1610352843422">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="250" key="GridCell.Tab.2.left/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843422" />
+    <state width="1398" height="250" key="GridCell.Tab.2.right" timestamp="1610352843424">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="250" key="GridCell.Tab.2.right/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843424" />
+    <state width="720" height="450" key="XDebugger.FullValuePopup" timestamp="1610346156010">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="720" height="450" key="XDebugger.FullValuePopup/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610346156010" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/main.go</url>
+          <line>42</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file:///usr/local/go/src/encoding/json/decode.go</url>
+          <line>99</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file:///usr/local/go/src/encoding/json/scanner.go</url>
+          <line>213</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file:///usr/local/go/src/encoding/json/scanner.go</url>
+          <line>251</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file:///usr/local/go/src/encoding/json/scanner.go</url>
+          <line>176</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file:///usr/local/go/src/encoding/json/scanner.go</url>
+          <line>37</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/main.go</url>
+          <line>39</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

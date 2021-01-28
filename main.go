@@ -6,19 +6,76 @@ import (
 	"time"
 )
 
-var a bool = true
+var (
+	a   bool = true
+	CST      = time.FixedZone("CST", 8*60*60)
+)
+
+type MyTest struct {
+	A   int `json:"a,default:100"`
+	Key string
+	B   int
+	Bl  bool `json:"bl,default:true"`
+}
+
+func modifyMyTest(test MyTest) {
+	//if 1 > test.B {
+	//	test.B = 1
+	//}
+	//if 100 > test.A {
+	//	test.A = 100
+	//}
+}
 
 func main() {
-	defer func() {
-		fmt.Println("err1:")
-	}()
-	if a == true {
-		fmt.Println("is true")
-		return
-	}
-	defer func() {
-		fmt.Println("err2:")
-	}()
+
+	a := uint64(465)
+	b := uint64(467)
+	fmt.Println(a - b)
+	fmt.Println(int64(a) - int64(b))
+	fmt.Println(uint64(int64(a) - int64(b)))
+
+	//test := MyTest{}
+
+	//a := (*MyTest)(&test)
+	//a.A = 100
+	//fmt.Println(a)
+	//_ = json.Unmarshal([]byte("{\"Key\":\"hello\",\"B\":0}"), &test)
+	//fmt.Println(test)
+	//modifyMyTest(test)
+	//fmt.Println(test)
+	//
+	//啊 := 2.9808080808012
+	//啊, _ = strconv.ParseFloat(fmt.Sprintf("%.5f", 啊), 64)
+	//fmt.Println(啊)
+
+	//rand.Seed(time.Now().Unix())
+	//ch := make(chan string)
+	//go func() {
+	//
+	//	i := rand.Intn(5) % 2
+	//	fmt.Println("i = ", i)
+	//	if i == 0 {
+	//		ch <- "ok1"
+	//	}
+	//	time.Sleep(1 * time.Second)
+	//	ch <- "ok2"
+	//
+	//}()
+	//select {
+	//case <-time.After(time.Second):
+	//	fmt.Println("超时")
+	//case <-ch:
+	//	//fmt.Println(res)
+	//}
+	//fmt.Println(time.Now().In(CST).Add(-60 * time.Minute).Hour())
+	//fmt.Println(time.Now().In(CST).Hour())
+
+	//start := time.Now()
+	//fmt.Println(0 % 100)
+	//time.Now().Second()
+	//time.Sleep(time.Duration(rand.Intn(5)) * time.Second)
+	//fmt.Println(time.Now().Sub(start).Seconds())
 
 	// 用这个来控制
 	//m := sync.Map{}
