@@ -28,6 +28,7 @@ func modifyMyTest(test MyTest) {
 }
 
 func main() {
+
 	a := uint64(465)
 	b := uint64(467)
 	fmt.Println(a - b)
