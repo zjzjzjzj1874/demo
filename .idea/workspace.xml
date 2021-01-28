@@ -31,15 +31,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9aee3f7-446d-42a1-af06-cca2750a5a13" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务统计/decoder-center.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务统计/decoder-task.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务统计/decoder.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务统计/model-schedule.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务统计/统计分析实体.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__docs__/video_decode/解码任务统计/统计解码实体.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__test__/concurrent.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__test__/concurrent_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -227,7 +218,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/main.go</url>
-          <line>42</line>
+          <line>41</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
@@ -257,7 +248,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/main.go</url>
-          <line>39</line>
+          <line>38</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
