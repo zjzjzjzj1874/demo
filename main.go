@@ -3,7 +3,13 @@ package main
 import (
 	"demo/task"
 	"fmt"
+	"io/ioutil"
+	"os/exec"
+	"reflect"
+	"strings"
+	"syscall"
 	"time"
+	"unsafe"
 )
 
 var (
@@ -27,13 +33,77 @@ func modifyMyTest(test MyTest) {
 	//}
 }
 
+func BytesToStr(v []byte) (r string) {
+	if v == nil {
+		return ""
+	}
+	pb := (*reflect.SliceHeader)(unsafe.Pointer(&v))
+	ps := (*reflect.StringHeader)(unsafe.Pointer(&r))
+	ps.Data = pb.Data
+	ps.Len = pb.Len
+	return
+}
+
+// exec命令调用测试
+func execCommand() {
+	var (
+		ret []string
+		arg = make([]string, 2)
+	)
+	arg[0], arg[1] = "sh", "-c"
+	arg = append(arg, "/Users/jiahua-zhoujian/Tools/shell/model-schedule.sh")
+
+	for i := 0; i <= 10; i++ {
+		go func() {
+			cmd := exec.Command(arg[0], arg[1:]...)
+			cmd.SysProcAttr = &syscall.SysProcAttr{}
+
+			pip, err := cmd.StdoutPipe()
+			if err != nil {
+				return
+			}
+			defer pip.Close()
+
+			err = cmd.Start()
+			if err != nil {
+				return
+			}
+			if cmd.ProcessState != nil {
+				if code := cmd.ProcessState.ExitCode(); code != 0 {
+					return
+				}
+			}
+
+			out, err := ioutil.ReadAll(pip)
+			if err != nil {
+				return
+			}
+
+			if len(out) > 0 {
+				ret = strings.Split(BytesToStr(out), "\n")
+				if out[len(out)-1] == '\n' {
+					ret = ret[0 : len(ret)-1]
+				}
+			}
+		}()
+	}
+	fmt.Println(ret)
+}
+
+// 类型和位
+func typeAndBit() {
+
+}
+
 func main() {
 
-	a := uint64(465)
-	b := uint64(467)
-	fmt.Println(a - b)
-	fmt.Println(int64(a) - int64(b))
-	fmt.Println(uint64(int64(a) - int64(b)))
+	fmt.Println(float64(time.Second) / (1000 * 1000 * 1000 * 2.8))
+
+	//a := uint64(465)
+	//b := uint64(467)
+	//fmt.Println(a - b)
+	//fmt.Println(int64(a) - int64(b))
+	//fmt.Println(uint64(int64(a) - int64(b)))
 
 	//test := MyTest{}
 

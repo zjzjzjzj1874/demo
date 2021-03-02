@@ -31,7 +31,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9aee3f7-446d-42a1-af06-cca2750a5a13" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/__docs__/decoder-optimize/create-decoder-task.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__docs__/decoder-optimize/decoder-cache.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__docs__/decoder-optimize/distribute-decoder-task.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__docs__/decoder-optimize/heartbeat.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__docs__/decoder-optimize/invalid_decoder.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__test__/panic&amp;&amp;recover.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/__test__/panic&amp;&amp;recover_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/main_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,18 +74,18 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/__docs__/video_decode/解码任务统计" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/__docs__/decoder-optimize" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/__docs__/decoder-optimize" />
       <recent name="$PROJECT_DIR$/__docs__/video_decode/解码任务统计" />
       <recent name="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-uml" />
       <recent name="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1-png" />
       <recent name="$PROJECT_DIR$/__docs__/video_decode" />
-      <recent name="$PROJECT_DIR$/__docs__/video_decode/解码任务及调度V1" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build demo">
+  <component name="RunManager" selected="Go Test.BenchmarkBytesToStr in demo">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="demo" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -96,15 +105,48 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="TestGetTaskMap in demo/__test__" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="BenchmarkBytesToStr in demo" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="demo" />
-      <working_directory value="$PROJECT_DIR$/__test__" />
-      <framework value="gotest" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gobench" />
       <kind value="PACKAGE" />
-      <package value="demo/__test__" />
+      <package value="demo" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestGetTaskMap$" />
+      <pattern value="^BenchmarkBytesToStr$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestTypeAndBit in demo" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="demo" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestTypeAndBit$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestTypeAndBit/数值类型占用字节空间 in demo" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="demo" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestTypeAndBit$/^数值类型占用字节空间$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestTypeAndBit/生成随机字符串\（包含大小写字母\+数字\） in demo" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="demo" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestTypeAndBit$/^生成随机字符串\（包含大小写字母\+数字\）$" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
@@ -120,8 +162,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.BenchmarkBytesToStr in demo" />
+        <item itemvalue="Go Test.TestTypeAndBit in demo" />
+        <item itemvalue="Go Test.TestTypeAndBit/数值类型占用字节空间 in demo" />
+        <item itemvalue="Go Test.TestTypeAndBit/生成随机字符串\（包含大小写字母\+数字\） in demo" />
         <item itemvalue="Go Build.go build demo" />
-        <item itemvalue="Go Test.TestGetTaskMap in demo/__test__" />
       </list>
     </recent_temporary>
   </component>
@@ -144,81 +189,118 @@
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="264" key="GridCell.Tab.0.bottom" timestamp="1610517216916">
+    <state x="407" y="67" key="#TestTypeAndBit/生成随机字符串\（包含大小写字母\+数字\）_in_demo" timestamp="1614676820156">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="407" y="67" key="#TestTypeAndBit/生成随机字符串\（包含大小写字母\+数字\）_in_demo/0.0.1440.900/53.-1080.1920.1080@0.0.1440.900" timestamp="1614676820156" />
+    <state width="1398" height="312" key="GridCell.Tab.0.bottom" timestamp="1614679588417">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1878" height="257" key="GridCell.Tab.0.bottom/0.0.1440.900/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1608716865345" />
     <state width="1398" height="264" key="GridCell.Tab.0.bottom/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610517216916" />
+    <state width="1398" height="312" key="GridCell.Tab.0.bottom/0.0.1440.900/53.-1080.1920.1080@0.0.1440.900" timestamp="1614679588417" />
+    <state width="1878" height="207" key="GridCell.Tab.0.bottom/0.0.1440.900/53.-1080.1920.1080@53.-1080.1920.1080" timestamp="1614675270959" />
+    <state width="1398" height="270" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1612274553503" />
     <state width="1398" height="192" key="GridCell.Tab.0.bottom/0.23.1440.877/-315.-1057.1920.1057@0.23.1440.877" timestamp="1609148594730" />
     <state width="1878" height="257" key="GridCell.Tab.0.bottom/0.23.1440.877/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1607920287796" />
     <state width="1398" height="192" key="GridCell.Tab.0.bottom/0.23.1440.877/-315.-1080.1920.1080@0.23.1440.877" timestamp="1609152166468" />
-    <state width="1398" height="264" key="GridCell.Tab.0.center" timestamp="1610517216911">
+    <state width="1398" height="312" key="GridCell.Tab.0.center" timestamp="1614679588415">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1878" height="257" key="GridCell.Tab.0.center/0.0.1440.900/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1608716865343" />
     <state width="1398" height="264" key="GridCell.Tab.0.center/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610517216911" />
+    <state width="1398" height="312" key="GridCell.Tab.0.center/0.0.1440.900/53.-1080.1920.1080@0.0.1440.900" timestamp="1614679588415" />
+    <state width="1878" height="207" key="GridCell.Tab.0.center/0.0.1440.900/53.-1080.1920.1080@53.-1080.1920.1080" timestamp="1614675270957" />
+    <state width="1398" height="270" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1612274553501" />
     <state width="1398" height="192" key="GridCell.Tab.0.center/0.23.1440.877/-315.-1057.1920.1057@0.23.1440.877" timestamp="1609148594729" />
     <state width="1878" height="257" key="GridCell.Tab.0.center/0.23.1440.877/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1607920287794" />
     <state width="1398" height="192" key="GridCell.Tab.0.center/0.23.1440.877/-315.-1080.1920.1080@0.23.1440.877" timestamp="1609152166466" />
-    <state width="1398" height="264" key="GridCell.Tab.0.left" timestamp="1610517216909">
+    <state width="1398" height="312" key="GridCell.Tab.0.left" timestamp="1614679588414">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1878" height="257" key="GridCell.Tab.0.left/0.0.1440.900/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1608716865342" />
     <state width="1398" height="264" key="GridCell.Tab.0.left/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610517216909" />
+    <state width="1398" height="312" key="GridCell.Tab.0.left/0.0.1440.900/53.-1080.1920.1080@0.0.1440.900" timestamp="1614679588414" />
+    <state width="1878" height="207" key="GridCell.Tab.0.left/0.0.1440.900/53.-1080.1920.1080@53.-1080.1920.1080" timestamp="1614675270955" />
+    <state width="1398" height="270" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1612274553500" />
     <state width="1398" height="192" key="GridCell.Tab.0.left/0.23.1440.877/-315.-1057.1920.1057@0.23.1440.877" timestamp="1609148594728" />
     <state width="1878" height="257" key="GridCell.Tab.0.left/0.23.1440.877/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1607920287793" />
     <state width="1398" height="192" key="GridCell.Tab.0.left/0.23.1440.877/-315.-1080.1920.1080@0.23.1440.877" timestamp="1609152166465" />
-    <state width="1398" height="264" key="GridCell.Tab.0.right" timestamp="1610517216912">
+    <state width="1398" height="312" key="GridCell.Tab.0.right" timestamp="1614679588416">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1878" height="257" key="GridCell.Tab.0.right/0.0.1440.900/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1608716865344" />
     <state width="1398" height="264" key="GridCell.Tab.0.right/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610517216912" />
+    <state width="1398" height="312" key="GridCell.Tab.0.right/0.0.1440.900/53.-1080.1920.1080@0.0.1440.900" timestamp="1614679588416" />
+    <state width="1878" height="207" key="GridCell.Tab.0.right/0.0.1440.900/53.-1080.1920.1080@53.-1080.1920.1080" timestamp="1614675270958" />
+    <state width="1398" height="270" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1612274553502" />
     <state width="1398" height="192" key="GridCell.Tab.0.right/0.23.1440.877/-315.-1057.1920.1057@0.23.1440.877" timestamp="1609148594729" />
     <state width="1878" height="257" key="GridCell.Tab.0.right/0.23.1440.877/-315.-1080.1920.1080@-315.-1080.1920.1080" timestamp="1607920287795" />
     <state width="1398" height="192" key="GridCell.Tab.0.right/0.23.1440.877/-315.-1080.1920.1080@0.23.1440.877" timestamp="1609152166467" />
-    <state width="1398" height="250" key="GridCell.Tab.1.bottom" timestamp="1610352843421">
+    <state width="1398" height="2" key="GridCell.Tab.1.bottom" timestamp="1614679489838">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="250" key="GridCell.Tab.1.bottom/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843421" />
-    <state width="1398" height="250" key="GridCell.Tab.1.center" timestamp="1610352843419">
+    <state width="1398" height="2" key="GridCell.Tab.1.bottom/0.0.1440.900/53.-1080.1920.1080@0.0.1440.900" timestamp="1614679489838" />
+    <state width="1398" height="280" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1612273435809" />
+    <state width="1398" height="2" key="GridCell.Tab.1.center" timestamp="1614679489834">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="250" key="GridCell.Tab.1.center/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843419" />
-    <state width="1398" height="250" key="GridCell.Tab.1.left" timestamp="1610352843418">
+    <state width="1398" height="2" key="GridCell.Tab.1.center/0.0.1440.900/53.-1080.1920.1080@0.0.1440.900" timestamp="1614679489834" />
+    <state width="1398" height="280" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1612273435808" />
+    <state width="1398" height="2" key="GridCell.Tab.1.left" timestamp="1614679489832">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="250" key="GridCell.Tab.1.left/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843418" />
-    <state width="1398" height="250" key="GridCell.Tab.1.right" timestamp="1610352843420">
+    <state width="1398" height="2" key="GridCell.Tab.1.left/0.0.1440.900/53.-1080.1920.1080@0.0.1440.900" timestamp="1614679489832" />
+    <state width="1398" height="280" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1612273435808" />
+    <state width="1398" height="2" key="GridCell.Tab.1.right" timestamp="1614679489836">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="250" key="GridCell.Tab.1.right/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843420" />
-    <state width="1398" height="250" key="GridCell.Tab.2.bottom" timestamp="1610352843425">
+    <state width="1398" height="2" key="GridCell.Tab.1.right/0.0.1440.900/53.-1080.1920.1080@0.0.1440.900" timestamp="1614679489836" />
+    <state width="1398" height="280" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1612273435809" />
+    <state width="1398" height="2" key="GridCell.Tab.2.bottom" timestamp="1614679489842">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="250" key="GridCell.Tab.2.bottom/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843425" />
-    <state width="1398" height="250" key="GridCell.Tab.2.center" timestamp="1610352843423">
+    <state width="1398" height="2" key="GridCell.Tab.2.bottom/0.0.1440.900/53.-1080.1920.1080@0.0.1440.900" timestamp="1614679489842" />
+    <state width="1398" height="280" key="GridCell.Tab.2.bottom/0.0.1440.900@0.0.1440.900" timestamp="1612273435811" />
+    <state width="1398" height="2" key="GridCell.Tab.2.center" timestamp="1614679489840">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="250" key="GridCell.Tab.2.center/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843423" />
-    <state width="1398" height="250" key="GridCell.Tab.2.left" timestamp="1610352843422">
+    <state width="1398" height="2" key="GridCell.Tab.2.center/0.0.1440.900/53.-1080.1920.1080@0.0.1440.900" timestamp="1614679489840" />
+    <state width="1398" height="280" key="GridCell.Tab.2.center/0.0.1440.900@0.0.1440.900" timestamp="1612273435810" />
+    <state width="1398" height="2" key="GridCell.Tab.2.left" timestamp="1614679489839">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="250" key="GridCell.Tab.2.left/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843422" />
-    <state width="1398" height="250" key="GridCell.Tab.2.right" timestamp="1610352843424">
+    <state width="1398" height="2" key="GridCell.Tab.2.left/0.0.1440.900/53.-1080.1920.1080@0.0.1440.900" timestamp="1614679489839" />
+    <state width="1398" height="280" key="GridCell.Tab.2.left/0.0.1440.900@0.0.1440.900" timestamp="1612273435810" />
+    <state width="1398" height="2" key="GridCell.Tab.2.right" timestamp="1614679489841">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="250" key="GridCell.Tab.2.right/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610352843424" />
-    <state width="720" height="450" key="XDebugger.FullValuePopup" timestamp="1610346156010">
+    <state width="1398" height="2" key="GridCell.Tab.2.right/0.0.1440.900/53.-1080.1920.1080@0.0.1440.900" timestamp="1614679489841" />
+    <state width="1398" height="280" key="GridCell.Tab.2.right/0.0.1440.900@0.0.1440.900" timestamp="1612273435810" />
+    <state width="720" height="450" key="XDebugger.FullValuePopup" timestamp="1614677169403">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="720" height="450" key="XDebugger.FullValuePopup/0.0.1440.900/-315.-1080.1920.1080@0.0.1440.900" timestamp="1610346156010" />
+    <state width="720" height="450" key="XDebugger.FullValuePopup/0.0.1440.900/53.-1080.1920.1080@0.0.1440.900" timestamp="1614677169403" />
+    <state x="511" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1611905346368">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="511" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900/53.-1080.1920.1080@0.0.1440.900" timestamp="1611905346368" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/main.go</url>
-          <line>42</line>
+          <line>112</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
@@ -248,10 +330,21 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/main.go</url>
-          <line>39</line>
+          <line>109</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/__test__/panic&amp;&amp;recover_test.go</url>
+          <line>176</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="DlvErrorBreakpoint" />
+      </default-breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/demo$TestTypeAndBit______in_demo.out" NAME="TestTypeAndBit/生成随机字符串\（包含大小写字母\+数字\） in demo Coverage Results" MODIFIED="1614676811256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

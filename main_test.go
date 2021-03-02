@@ -11,6 +11,7 @@ import (
 	"syscall"
 	"testing"
 	"time"
+	"unsafe"
 )
 
 func init() {
@@ -197,4 +198,81 @@ func TestPidInOs(t *testing.T) {
 	}()
 	time.Sleep(time.Hour)
 	// todo  开启协程:用waitGroup的来控制多个时间 ==> ai-agent中请求机器的方法拆分开来 避免超时
+}
+
+func TestTypeAndBit(t *testing.T) {
+	t.Run("数值类型占用字节空间", func(t *testing.T) {
+		var i1 int = 1   // int是最特殊的,和当前程序运行的平台强相关 ==> 本机是Mac,占用8个字节
+		var i2 int8 = 2  // 8位占用一个字节
+		var i3 int16 = 3 // 16位占用2个字节
+		var i4 int32 = 4 // 32位占用4个字节
+		var i5 int64 = 5 // 64位占用8个字节
+		fmt.Println(unsafe.Sizeof(i1))
+		fmt.Println(unsafe.Sizeof(i2))
+		fmt.Println(unsafe.Sizeof(i3))
+		fmt.Println(unsafe.Sizeof(i4))
+		fmt.Println(unsafe.Sizeof(i5))
+	})
+
+	t.Run("生成随机字符串（包含大小写字母+数字）", func(t *testing.T) {
+		for i := 0; i < 10; i++ {
+			time.Sleep(time.Second)
+			fmt.Println(CharStringByASCII(6))
+		}
+	})
+
+	t.Run("生成数字型随机字符串", func(t *testing.T) {
+		for i := 0; i < 100; i++ {
+			time.Sleep(time.Second)
+			fmt.Println(NumString(6))
+		}
+	})
+	time.Sleep(time.Hour)
+}
+
+func BenchmarkBytesToStr(b *testing.B) {
+	b.Run("ASCII码生成", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			CharStringByASCII(6)
+		}
+	})
+	b.Run("随机字符串生成", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			RandStringRunes(6)
+		}
+	})
+}
+
+func CharStringByASCII(len int) string {
+	/*生成随机字符串（包含大小写字母+数字）*/
+	kinds, result := [][]int{{10, 48}, {26, 97}, {26, 65}}, make([]byte, len)
+	for i := 0; i < len; i++ {
+		ikind := rand.Intn(3)
+		scope, base := kinds[ikind][0], kinds[ikind][1]
+		result[i] = uint8(base + rand.Intn(scope))
+	}
+	return string(result)
+}
+
+func RandStringRunes(n int) string {
+	var letterRunes = []rune("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+	b := make([]rune, n)
+	for i := range b {
+		b[i] = letterRunes[rand.Intn(len(letterRunes))]
+	}
+	return string(b)
+}
+
+func NumString(len int) string {
+	/*生成数字型随机字符串*/
+	r := rand.New(rand.NewSource(time.Now().Unix()))
+	str := ""
+	for i := 0; i < len; i++ {
+		b := r.Intn(10)
+		if i == 0 && b == 0 {
+			b = 1
+		}
+		str += strconv.Itoa(b)
+	}
+	return str
 }
